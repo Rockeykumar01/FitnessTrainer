@@ -11,5 +11,5 @@ function CallButton({ handleVideoCall }) {
     </button>
   );
 }
-
+ // default export of the CallButton component
 export default CallButton;
