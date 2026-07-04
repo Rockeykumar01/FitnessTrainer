@@ -89,3 +89,5 @@ const AppContextProvider = (props) => {
 };
 
 export default AppContextProvider;
+
+// it is a context provider component that provides application-wide state and functions related to trainers, user authentication, and email verification. It uses React's Context API to share state across the application.
