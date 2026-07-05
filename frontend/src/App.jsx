@@ -36,12 +36,12 @@ const App = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
         <Route path='/verify-email' element={<EmailVerification />} />
-        <Route path='/my-profile' element={token ? (userData && !userData.isVerified ? <Navigate to="/verify-email" /> : <MyProfile />) : <Navigate to="/login" />} />
-        <Route path='/my-appointments' element={token ? (userData && !userData.isVerified ? <Navigate to="/verify-email" /> : <MyAppointments />) : <Navigate to="/login" />} />
+        <Route path='/my-profile' element={token ? <MyProfile /> : <Navigate to="/login" />} />
+        <Route path='/my-appointments' element={token ? <MyAppointments /> : <Navigate to="/login" />} />
         <Route path='/appointment/:docId' element={<Appointment />} />
-        <Route path='/call' element={token ? (userData && !userData.isVerified ? <Navigate to="/verify-email" /> : <CallPage />) : <Navigate to="/login" />} />
-        <Route path='/chat/:id' element={token ? (userData && !userData.isVerified ? <Navigate to="/verify-email" /> : <ChatPage />) : <Navigate to="/login" />} />
-        <Route path='/call/:id' element={token ? (userData && !userData.isVerified ? <Navigate to="/verify-email" /> : <CallPage />) : <Navigate to="/login" />} />
+        <Route path='/call' element={token ? <CallPage /> : <Navigate to="/login" />} />
+        <Route path='/chat/:id' element={token ? <ChatPage /> : <Navigate to="/login" />} />
+        <Route path='/call/:id' element={token ? <CallPage /> : <Navigate to="/login" />} />
         <Route path='*' element={<Navigate to="/" />} />
       </Routes>
       <Footer />

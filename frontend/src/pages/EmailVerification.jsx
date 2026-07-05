@@ -22,7 +22,7 @@ const EmailVerificationPage = () => {
     //         console.log("Using token:", token); // ✅ Check if token is found
 
     //         const res = await fetch(
-    //             `http://localhost:4000/api/user/deleteUserByEmail/hemantporwal2k3@gmail.com`,
+    //             `http://localhost:4000/api/user/deleteUserByEmail/rockey@gmail.com`,
     //             {
     //                 method: "DELETE",
     //                 headers: { token },

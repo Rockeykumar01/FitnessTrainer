@@ -37,8 +37,7 @@ import Gynecologist from './Gynecologist.svg'
 import Neurologist from './Neurologist.svg'
 import Pediatricians from './Pediatricians.svg'
 import newDocImage from './DoctorGroup.jpeg'
-import Hemant_Photo from './Hemant_Photo.jpg'
-
+import Rockey_Photo from './Rockey_Photo.jpg'
 
 export const assets = {
     appointment_img,
@@ -59,33 +58,40 @@ export const assets = {
     stripe_logo,
     razorpay_logo,
     newDocImage,
-    Hemant_Photo
+    Rockey_Photo
 }
+
+import weight_training from './weight_training.png'
+import yoga_meditation from './yoga_meditation.png'
+import cardio_endurance from './cardio_endurance.png'
+import nutrition_diet from './nutrition_diet.png'
+import physiotherapy from './physiotherapy.png'
+import hiit_crossfit from './hiit_crossfit.png'
 
 export const specialityData = [
     {
         speciality: 'Weight Training',
-        image: General_physician
+        image: weight_training
     },
     {
         speciality: 'Yoga & Meditation',
-        image: Gynecologist
+        image: yoga_meditation
     },
     {
         speciality: 'Cardio & Endurance',
-        image: Dermatologist
+        image: cardio_endurance
     },
     {
         speciality: 'Nutrition & Diet',
-        image: Pediatricians
+        image: nutrition_diet
     },
     {
         speciality: 'Physiotherapy',
-        image: Neurologist
+        image: physiotherapy
     },
     {
         speciality: 'HIIT & CrossFit',
-        image: Gastroenterologist
+        image: hiit_crossfit
     },
 ]
 
