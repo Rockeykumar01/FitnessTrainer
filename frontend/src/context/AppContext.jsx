@@ -8,8 +8,10 @@ const AppContextProvider = (props) => {
 
     const currencySymbol = "₹";
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    // this is the base URL for the backend API, which is retrieved from environment variables. It allows the frontend to make requests to the backend server for various operations like fetching trainers, user data, etc. and this is used to ensure that the frontend can communicate with the backend regardless of the deployment environment (development, staging, production). its used in axios requests to make API calls to the backend server. so that the frontend can interact with the backend services for data retrieval and manipulation. and this is used in the context provider to make API calls to the backend server for various operations like fetching trainers, user data, etc. and this is used to ensure that the frontend can communicate with the backend regardless of the deployment environment (development, staging, production). its used in axios requests to make API calls to the backend server to interact with the backend services for data retrieval and manipulation.
     const [trainers, setTrainers] = useState([]);
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
+    // here token is a state variable that holds the authentication token for the user. It is initialized by checking if there is a token stored in the local storage of the browser. If a token exists, it is retrieved and set as the initial state; otherwise, an empty string is used. This token is used for authenticating API requests to the backend server, allowing the frontend to access protected routes and user-specific data. The setToken function allows updating this token state when the user logs in or logs out, ensuring that the application can manage user sessions effectively.
     const [userData, setUserData] = useState(false)
     const [isVerified, setIsVerified] = useState(false);
 

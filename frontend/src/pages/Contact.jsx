@@ -44,3 +44,4 @@ const Contact = () => {
 
 export default Contact
 
+// here is the contact page of the website. It includes a header and a contact section with an image of the developer and their contact information. The page uses framer-motion for animations, making the elements fade in and slide into view when the page loads. The layout is responsive, adjusting for different screen sizes using Tailwind CSS classes.
