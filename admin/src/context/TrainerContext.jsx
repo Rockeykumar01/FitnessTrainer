@@ -104,3 +104,5 @@ const TrainerContextProvider = (props) => {
 }
 
 export default TrainerContextProvider
+
+// here is the TrainerContext.jsx file, which creates a context for managing trainer-related data and actions in a React application. It uses the Context API to provide state and functions related to trainer appointments, profile data, and dashboard data to the components that consume this context. The context includes functions for fetching appointments, canceling and completing appointments, and retrieving profile and dashboard data from the backend API. It also handles authentication tokens and error handling using toast notifications.

@@ -39,7 +39,8 @@ const AddTrainer = () => {
 
       const { data } = await axios.post(`${backendUrl}/api/admin/add-trainer`, formData, {
         headers: { aToken },
-      });
+      }); 
+      // above line sends a POST request to the backend API endpoint for adding a trainer, including the form data and the admin token in the headers for authentication.
 
       if (data.success) {
         toast.success(data.message);
@@ -181,3 +182,4 @@ const AddTrainer = () => {
 };
 
 export default AddTrainer;
+// this component is used to add a new trainer to the system. It includes a form with fields for the trainer's image, name, email, password, experience, fees, about section, speciality, degree, and address. The form data is submitted to the backend API endpoint for adding a trainer. dat is shared to the backend using axios, and appropriate success or error messages are displayed using react-toastify. The component also uses context to access the admin token for authentication. form validation is implemented to ensure that all required fields are filled before submission. The UI is styled using Tailwind CSS classes for a modern and responsive design.
