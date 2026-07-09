@@ -261,12 +261,16 @@ const updateProfile = async (req, res) => {
         await userModel.findByIdAndUpdate(userId, { name, phone, address: JSON.parse(address), dob, gender })
         /* 
         use of json parse 
-        const jsonStr = '{"name":"Hemant","age":22}'; // JSON string
-        const user = JSON.parse(jsonStr); // Now it's a JavaScript object
+        const jsonStr = '{"name":"Rockey","age":22}'; // JSON string
+
+        // Parse JSON string to object
+        const user = JSON.parse(jsonStr);
+
+        // console.log(user.name); // Output: Rockey
         
         */
 
-        // console.log(user.name); // Output: Hemant
+        // console.log(user.name); // Output: Rockey
         if (imageFile) 
         {
 
@@ -479,6 +483,8 @@ const deleteUserByEmail = async (req, res) => {
         res.status(500).json({ success: false, message: "Something went wrong!", error: err.message });
     }
 };
+
+
 
 export {
     loginUser,

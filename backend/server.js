@@ -16,6 +16,7 @@ connectCloudinary()
 // middlewares
 app.use(express.json())
 app.use(cors())
+// cors configuration help for allowing requests from frontend and other origins so that the server can handle requests from different domains without running into cross-origin issues. This is particularly important for web applications where the frontend and backend may be hosted on different servers or ports.
 
 // api endpoints 
 app.use("/api/admin", adminRouter)

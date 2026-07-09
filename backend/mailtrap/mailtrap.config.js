@@ -34,7 +34,7 @@ export const sender = {
  // we have to make dynamic recipients   ( so commenting it out for now )
 // const recipients = [
 //   {
-//     email: "porwalhemant080@gmail.com",
+//     email: "porwalrockey080@gmail.com",
 //   }
 // ];
 
