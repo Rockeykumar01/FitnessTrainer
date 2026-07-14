@@ -281,6 +281,13 @@ const updateProfile = async (req, res) => {
             await userModel.findByIdAndUpdate(userId, { image: imageURL })
 
         }
+        
+        // Ensure that any existing appointments reflect the updated user data (like age and image)
+        const updatedUser = await userModel.findById(userId).select('-password');
+        await appointmentModel.updateMany(
+            { userId: userId },
+            { $set: { userData: updatedUser.toObject() } }
+        );
 
         res.json({ success: true, message: 'Profile Updated' })
 
@@ -297,45 +304,46 @@ const bookAppointment = async (req, res) => {
     try {
 
         const { userId, docId, slotDate, slotTime } = req.body
-        const trainerData = await trainerModel.findById(docId).select("-password")
 
-        if (!trainerData.available) {
+        // First check if the trainer is available at all (not suspended/unavailable)
+        const trainerCheck = await trainerModel.findById(docId).select('available')
+        if (!trainerCheck || !trainerCheck.available) {
             return res.json({ success: false, message: 'Trainer Not Available' })
         }
 
-        let slots_booked = trainerData.slots_booked
+        // ATOMIC UPDATE: Check slot availability and reserve it in a single DB operation.
+        // This prevents race conditions where two users could book the same slot simultaneously.
+        // MongoDB will only update the document if the slotTime does NOT already exist in the array for that date.
+        const updatedTrainer = await trainerModel.findOneAndUpdate(
+            {
+                _id: docId,
+                // CONDITION: Only update if slotTime does NOT already exist for that date
+                [`slots_booked.${slotDate}`]: { $ne: slotTime }
+            },
+            {
+                // ACTION: Atomically push the slotTime into the date's array
+                $push: { [`slots_booked.${slotDate}`]: slotTime }
+            },
+            { new: true, select: '-password' }
+        )
 
-        // checking for slot availablity 
-        // if no slot corresponding to slotDate is present then we will create a new slot for that date directly without checking for slotTime
-        // if slotDate is present then we will check for slotTime
-        if (slots_booked[slotDate]) {
-            if (slots_booked[slotDate].includes(slotTime)) {
-                return res.json({ success: false, message: 'Slot Not Available' })
-            }
-            else {
-                slots_booked[slotDate].push(slotTime)
-                // tha particular slotTime is not booked so we will push that slotTime into the slots_booked array of that date
-            }
-        }
-        else {
-            //  Noone have make the appointment on that day  
-            slots_booked[slotDate] = []
-            slots_booked[slotDate].push(slotTime)
+        // If MongoDB returns null, the slot was already taken (race condition caught!)
+        if (!updatedTrainer) {
+            return res.json({ success: false, message: 'Slot Not Available' })
         }
 
         const userData = await userModel.findById(userId).select("-password")
 
-        delete trainerData.slots_booked
-
-        // why i am doing this because i want to store docData in appointmentData but I do not want to show array of slots book of the trainer 
-        // In appointment data, i didnot want to show appointment data 
+        // Build the appointment record — remove slots_booked from the trainer snapshot stored inside
+        const trainerDataForAppointment = updatedTrainer.toObject()
+        delete trainerDataForAppointment.slots_booked
 
         const appointmentData = {
             userId,
             docId,
             userData,
-            docData: trainerData,           // slots_booked property removed      
-            amount: trainerData.fees,
+            docData: trainerDataForAppointment,  // slots_booked property removed
+            amount: updatedTrainer.fees,
             slotTime,
             slotDate,
             date: Date.now()
@@ -343,10 +351,6 @@ const bookAppointment = async (req, res) => {
 
         const newAppointment = new appointmentModel(appointmentData)
         await newAppointment.save()
-
-        // save new slots data in docData
-        await trainerModel.findByIdAndUpdate(docId, { slots_booked })
-        // since slots_booked is an object we have updated slots booked over here { slot_date , slot_time }
 
         res.json({ success: true, message: 'Session Booked' })
 

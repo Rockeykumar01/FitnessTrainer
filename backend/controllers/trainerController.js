@@ -169,6 +169,14 @@ const updateTrainerProfile = async (req, res) => {
     try {
         const { trainerId, fees, address, available, about } = req.body
         await trainerModel.findByIdAndUpdate(trainerId, { fees, address, available, about })
+        
+        // Ensure that any existing appointments reflect the updated trainer data (like fees, address, etc.)
+        const updatedTrainer = await trainerModel.findById(trainerId).select('-password');
+        await appointmentModel.updateMany(
+            { docId: trainerId },
+            { $set: { docData: updatedTrainer.toObject() } }
+        );
+
         res.json({ success: true, message: 'Profile Updated' })
     } catch (error) {
         console.log(error)

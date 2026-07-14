@@ -17,3 +17,4 @@ const authTrainer = async (req, res, next) => {
 }
 
 export default authTrainer;
+// here decoder is used to decode the token and get the trainer ID from it. This ID is then added to the request body so that it can be used in subsequent middleware or route handlers. If the token is invalid or missing, an error message is returned.
