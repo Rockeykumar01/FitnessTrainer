@@ -23,3 +23,4 @@ const userSchema = new mongoose.Schema({
 const userModel = mongoose.models.user || mongoose.model("user", userSchema);
 export default userModel;
 
+// comments: This code defines a Mongoose schema for a user model in a MongoDB database. The schema includes fields for user information such as name, email, image, phone, address
