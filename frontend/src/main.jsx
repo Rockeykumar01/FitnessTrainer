@@ -22,4 +22,5 @@ Yes — if you've implemented those API calls inside AppContext, and you call th
 
   </BrowserRouter>,
 )
+// components are the building blocks of react app and we can use them in any other component as per our requirement.
   
