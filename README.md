@@ -147,32 +147,6 @@ npm run dev
 
 ---
 
-## 🖼️ Screenshots
-
-### 🔹 Home Page (User Interface)
-![Home Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161406.png?raw=true)
-
-### 🔹 Browse Trainers by Speciality
-![Browse Trainers](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161424.png?raw=true)
-
-### 🔹 All Trainers (User Interface)
-![All Trainers](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161500.png?raw=true)
-
-### 🔹 Contact Page
-![Contact Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161517.png?raw=true)
-
-### 🔹 Admin Dashboard
-![Admin Dashboard](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161532.png?raw=true)
-
-### 🔹 Admin — All Sessions
-![Admin Sessions](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161543.png?raw=true)
-
-### 🔹 Admin — Trainer List
-![Admin Trainer List](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161552.png?raw=true)
-
-### 🔹 Trainer — Session Management Panel
-![Trainer Panel](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161618.png?raw=true)
-
 ---
 
 ## 🔒 Security Highlights
