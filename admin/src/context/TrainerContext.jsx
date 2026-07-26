@@ -10,7 +10,7 @@ const TrainerContextProvider = (props) => {
     const [appointments, setAppointments] = useState([])
     const [dashData, setDashData] = useState(false)
     const [profileData, setProfileData] = useState(false)
-
+        
     // Getting Trainer session data from Database using API
     const getAppointments = async () => {
         try {

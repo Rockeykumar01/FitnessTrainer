@@ -7,7 +7,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#5F6FFF', // Add your custom color here
+                primary: '#FF6B6B', // Light reddish color for fitness theme
             },
         },
     },

@@ -1,93 +1,120 @@
-# DOCBRIDGE
+# 💪 FitConnect — Fitness Trainer Booking Platform
 
-##  Overview
+## 🔍 Overview
 
-This is a **Full-Stack Doctor Appointment Booking System** built using the **MERN stack**. It includes separate panels for **Admin**, **Doctor**, and **User** roles. The application also features:
+**FitConnect** is a full-stack **Fitness Trainer Booking Platform** built using the **MERN Stack** (MongoDB, Express.js, React.js, Node.js). It bridges the gap between clients and certified fitness trainers by providing a seamless digital platform for discovering, booking, and managing personalized training sessions.
 
-- **Razorpay** for payment processing  
-- **video call/Message** for personalized interaction 
--  Full **Email verification** for the security of the application
+The application includes three separate role-based panels:
 
----
+- 👤 **User/Client Panel** — Browse trainers, book sessions, pay online, manage profile
+- 🏋️ **Trainer Panel** — Manage session bookings, track earnings, update availability
+- 🛡️ **Admin Panel** — Add/remove trainers, oversee all sessions, view platform analytics
 
-##  Tech Stack
-
-- **Frontend:** React (Vite), React Router, Tailwind CSS  
-- **Backend:** Node.js, Express.js  
-- **Database:** MongoDB, Mongoose  
-- **Authentication:** JWT, bcrypt  
-- **File Uploads:** Multer, Cloudinary  
-- **Payments:** Razorpay  
-- **Other Integrations:**
-  - websockets and webRTC for message and video call
+**Key Features:**
+- 🔐 JWT-based authentication with separate guards for each role
+- 💳 **Razorpay** integration for secure online payment of session fees
+- 📧 **Email Verification** on registration via Mailtrap
+- ☁️ **Cloudinary + Multer** for scalable trainer profile image uploads
 
 ---
 
-##  Folder Structure
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Frontend** | React.js (Vite), React Router, Tailwind CSS |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB, Mongoose |
+| **Authentication** | JWT (jsonwebtoken), bcrypt |
+| **File Uploads** | Multer, Cloudinary |
+| **Payments** | Razorpay |
+| **Email Service** | Mailtrap / Nodemailer |
+
+---
+
+## 📁 Folder Structure
 
 ```bash
-DOCBRIDGE/
-├── backend/       # Backend code (Node.js + Express)
-├── frontend/      # User interface (React + Tailwind CSS)
-└── admin/         # Admin panel frontend
+fitnesstrainer/
+├── backend/
+│   ├── controllers/     # Business logic (user, trainer, admin)
+│   ├── models/          # MongoDB schemas (User, Trainer, Appointment)
+│   ├── middleware/      # JWT auth guards (authUser, authTrainer, authAdmin)
+│   ├── routes/          # API route definitions
+│   ├── config/          # MongoDB & Cloudinary connection setup
+│   ├── mailtrap/        # Email templates & sending logic
+│   ├── utils/           # Helper utilities (e.g., verification code generator)
+│   └── server.js        # Express server entry point
+│
+├── frontend/            # React app — User/Client Panel
+└── admin/               # React app — Admin Panel
+```
 
-
+**API Endpoints:**
+```
+/api/user     → Register, Login, Book Session, Pay, Profile
+/api/trainer  → Trainer Login, Manage Sessions, Dashboard
+/api/admin    → Add/Remove Trainers, View All Sessions, Dashboard
 ```
 
 ---
 
-##  Getting Started
+## 🚀 Getting Started
 
-Follow these steps to set up **DOCBRIDGE** locally.
+Follow these steps to set up **FitConnect** locally.
 
-
-###  1. Clone the Repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Porwal-Hemant/DocBridge
-cd DOCBRIDGE
+git clone https://github.com/Rockeykumar01/FitnessTrainer
+cd fitnesstrainer
 ```
-###  2. Install Dependencies
-DOCBRIDGE Booking may have separate folders for backend and frontend ( named **frontend** and **backend** )
 
-- Install Backend Dependencies
+### 2. Install Dependencies
+
+Install dependencies for all three parts of the app:
 
 ```bash
+# Backend
 cd backend
 npm install
 
-```
-
--  Install Frontend Dependencies
-```bash
+# Frontend (User Panel)
 cd ../frontend
+npm install
+
+# Admin Panel
+cd ../admin
 npm install
 ```
 
-###  3. Configure Environment Variables
+### 3. Configure Environment Variables
 
-- Create a `.env` file inside the **backend** folder and add:
+Create a `.env` file inside the **backend** folder and add the following:
 
-```bash
-MONGODB_URI=''
-CLOUDINARY_NAME = ''
-CLOUDINARY_API_KEY = ''
+```env
+# Database
+MONGODB_URI='your_mongodb_connection_string'
 
-CLOUDINARY_SECRET_KEY = '' 
-# Admin Panel Credentials
-ADMIN_EMAIL = "admin@example.com"
-ADMIN_PASSWORD = ""
+# Cloudinary (for trainer image uploads)
+CLOUDINARY_NAME=''
+CLOUDINARY_API_KEY=''
+CLOUDINARY_SECRET_KEY=''
 
-JWT_SECRET = "hemant" 
+# Admin Credentials (hardcoded in .env for security)
+ADMIN_EMAIL="admin@fitconnect.com"
+ADMIN_PASSWORD="your_admin_password"
 
-# Razorpay Payment Integration
-CURRENCY ='INR'
-RAZORPAY_KEY_ID = 'YOUR_KEY'
-RAZORPAY_KEY_SECRET = 'YOUR_KEY_SECRET'
-MAILTRAP_TOKEN= YOUR MAILTRAP TOKEN 
+# JWT
+JWT_SECRET="your_jwt_secret_key"
 
-STEAM_API_KEY =  NEW STREAM API KEY
-STEAM_API_SECRET = NEW STREAM aPI SECRET KEY 
+# Razorpay (Payment Gateway)
+CURRENCY='INR'
+RAZORPAY_KEY_ID='your_razorpay_key_id'
+RAZORPAY_KEY_SECRET='your_razorpay_key_secret'
+
+# Mailtrap (Email Verification)
+MAILTRAP_TOKEN=your_mailtrap_token
 ```
 
 ### 4. Start the Backend Server
@@ -95,80 +122,71 @@ STEAM_API_SECRET = NEW STREAM aPI SECRET KEY
 ```bash
 cd backend
 npm start
-
 ```
+> Backend runs at: **http://localhost:4000**
 
-- The backend will start at: http://localhost:4000
-
-
-
-### 5. Start the Frontend Server
+### 5. Start the Frontend (User Panel)
 
 Open a new terminal:
 
 ```bash
 cd frontend
 npm run dev
-
 ```
-- The frontend will run at: http://localhost:5173
+> Frontend runs at: **http://localhost:5173**
 
-Admin Panel Setup:
+### 6. Start the Admin Panel
+
+Open another terminal:
+
 ```bash
-cd ../admin
-npm install   # Install admin panel dependencies
+cd admin
+npm run dev
 ```
-
+> Admin panel runs at: **http://localhost:5174**
 
 ---
 
-##  Screenshots
+## 🖼️ Screenshots
 
-### 🔹 Home Page ( User Interface ) 
+### 🔹 Home Page (User Interface)
 ![Home Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161406.png?raw=true)
 
-### 🔹 Home Page ( During speciality selection )
-![Home Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161424.png?raw=true)
+### 🔹 Browse Trainers by Speciality
+![Browse Trainers](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161424.png?raw=true)
 
+### 🔹 All Trainers (User Interface)
+![All Trainers](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161500.png?raw=true)
 
-### 🔹 All Doctors ( User Interface )
-![All Doctors](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161500.png?raw=true)
+### 🔹 Contact Page
+![Contact Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161517.png?raw=true)
 
+### 🔹 Admin Dashboard
+![Admin Dashboard](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161532.png?raw=true)
 
-### 🔹 Contact Details ( User Interface )
-![Contact Details](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161517.png?raw=true)
+### 🔹 Admin — All Sessions
+![Admin Sessions](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161543.png?raw=true)
 
+### 🔹 Admin — Trainer List
+![Admin Trainer List](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161552.png?raw=true)
 
-### 🔹 Admin Home Page
-![Admin Home Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161532.png?raw=true)
-
-
-### 🔹 Admin Appointment Page
-![Admin Appointment Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161543.png?raw=true)
-
-
-### 🔹 Admin Doctor List
-![Admin Doctor List](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161552.png?raw=true)
-
-### 🔹 Doctor Appointment Page
-![Doctor Appointment Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161618.png?raw=true)
-
-### 🔹 Message Page
-![Message Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-05%20195751.png?raw=true)
-
-### 🔹 VideoCall Page
-![Video call Page](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-05%20164620.png?raw=true)
-
+### 🔹 Trainer — Session Management Panel
+![Trainer Panel](https://github.com/Porwal-Hemant/DocBridge/blob/main/Screenshot%202025-08-03%20161618.png?raw=true)
 
 ---
 
-## Connect with Me 
+## 🔒 Security Highlights
 
-- **Name**: Hemant Porwal  
-- **Email**: [hemantporwal2k3@gmail.com](mailto:hemantporwal2k3@gmail.com)  
-- **LinkedIn**: [https://www.linkedin.com/in/hemantporwal/](https://www.linkedin.com/in/hemant-porwal-462b1b258/)
+- Passwords hashed using **bcrypt** (10 salt rounds) — never stored in plain text
+- **JWT tokens** signed with a secret key, validated on every protected request
+- Three separate auth middlewares: `authUser.js`, `authTrainer.js`, `authAdmin.js`
+- Email verification token with **24-hour expiry** on registration
+- Environment variables used for all sensitive credentials
 
+---
 
+## 🤝 Connect with Me
 
-
-
+- **Name**: Rockey Kumar
+- **Email**: [rockey@gmail.com](mailto:rockey@gmail.com)
+- **LinkedIn**: [linkedin.com/in/rockeykumar](https://www.linkedin.com/in/hemant-porwal-462b1b258/)

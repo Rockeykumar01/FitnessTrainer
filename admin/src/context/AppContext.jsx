@@ -26,6 +26,7 @@ const AppContextProvider = (props) => {
     // Function to calculate the age accurately (e.g., 20_01_2000 => 25)
 
     const calculateAge = (dob) => {
+        if (!dob || dob === 'Not Selected') return 'N/A';
         const today = new Date();
         const birthDate = new Date(dob);
 
@@ -39,7 +40,7 @@ const AppContextProvider = (props) => {
             age--; // Decrease age if the birthday hasn't passed yet
         }
 
-        return age;
+        return isNaN(age) ? 'N/A' : age;
     };
 
     const value = {
