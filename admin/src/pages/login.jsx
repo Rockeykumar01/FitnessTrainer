@@ -11,12 +11,15 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://fitnesstrainer-cf9v.onrender.com"
+  const rawUrl = import.meta.env.VITE_BACKEND_URL || "https://fitnesstrainer-cf9v.onrender.com"
+  const backendUrl = rawUrl.trim().replace(/\/+$/, '')
   const { setDToken } = useContext(TrainerContext)
   const { setAToken } = useContext(AdminContext)
+  const [loading, setLoading] = useState(false)
 
   const onSubmitHandler = async (event) => {
     event.preventDefault()
+    setLoading(true)
 
     try {
       if (state === 'Admin') {
@@ -39,8 +42,11 @@ const Login = () => {
         }
       }
     } catch (error) {
-      toast.error("Login Failed")
+      const errorMsg = error?.response?.data?.message || error?.message || "Login Failed"
+      toast.error(errorMsg)
       console.log(error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -85,8 +91,11 @@ const Login = () => {
             required
           />
         </div>
-        <button className="bg-orange-500 text-white w-full py-2 rounded-md text-base hover:bg-orange-600 transition duration-200">
-          Login
+        <button
+          disabled={loading}
+          className="bg-orange-500 text-white w-full py-2 rounded-md text-base hover:bg-orange-600 transition duration-200 disabled:opacity-50"
+        >
+          {loading ? 'Logging in...' : 'Login'}
         </button>
 
         {state === 'Admin' ? (

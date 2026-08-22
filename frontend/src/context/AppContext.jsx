@@ -7,7 +7,8 @@ export const AppContext = createContext();
 const AppContextProvider = (props) => {
 
     const currencySymbol = "₹";
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://fitnesstrainer-cf9v.onrender.com";
+    const rawUrl = import.meta.env.VITE_BACKEND_URL || "https://fitnesstrainer-cf9v.onrender.com";
+    const backendUrl = rawUrl.trim().replace(/\/+$/, '');
     // this is the base URL for the backend API, which is retrieved from environment variables. It allows the frontend to make requests to the backend server for various operations like fetching trainers, user data, etc. and this is used to ensure that the frontend can communicate with the backend regardless of the deployment environment (development, staging, production). its used in axios requests to make API calls to the backend server. so that the frontend can interact with the backend services for data retrieval and manipulation. and this is used in the context provider to make API calls to the backend server for various operations like fetching trainers, user data, etc. and this is used to ensure that the frontend can communicate with the backend regardless of the deployment environment (development, staging, production). its used in axios requests to make API calls to the backend server to interact with the backend services for data retrieval and manipulation.
     const [trainers, setTrainers] = useState([]);
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
