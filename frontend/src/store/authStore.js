@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/user`;
+const API_URL = `${import.meta.env.VITE_BACKEND_URL || "https://fitnesstrainer-cf9v.onrender.com"}/api/user`;
 // axios.defaults.withCredentials = true;
 // This code defines a global authentication state management system using Zustand and Axios. 
 export const useAuthStore = create((set) => ({
