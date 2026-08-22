@@ -15,8 +15,8 @@ import EmailVerification from './pages/EmailVerification'
 import 'react-toastify/dist/ReactToastify.css'
 import { AppContext } from './context/AppContext'
 
-import CallPage from './pages/callPage'
-import ChatPage from './pages/chatPage'
+import CallPage from './pages/CallPage'
+import ChatPage from './pages/ChatPage'
 
 const App = () => {
   const { token, userData, isVerified } = useContext(AppContext)
