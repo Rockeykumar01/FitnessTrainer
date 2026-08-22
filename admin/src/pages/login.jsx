@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://fitnesstrainer-cf9v.onrender.com"
   const { setDToken } = useContext(TrainerContext)
   const { setAToken } = useContext(AdminContext)
 

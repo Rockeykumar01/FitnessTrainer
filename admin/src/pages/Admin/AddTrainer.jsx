@@ -17,7 +17,7 @@ const AddTrainer = () => {
   const [address1, setAddress1] = useState('');
   const [address2, setAddress2] = useState('');
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://fitnesstrainer-cf9v.onrender.com";
   const { aToken } = useContext(AdminContext);
 
   const onSubmitHandler = async (event) => {
